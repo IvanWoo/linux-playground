@@ -1,3 +1,6 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
 Vagrant.configure("2") do |config|
   config.vm.box = "starboard/ubuntu-arm64-20.04.5"
   config.vm.box_version = "20221120.20.40.0"
@@ -14,7 +17,12 @@ Vagrant.configure("2") do |config|
     apt-get -yqq update && apt-get install -yqq kitty-terminfo
   SHELL
 
-  ## ebpf related
+  ## Install golang
+  config.vm.provision "shell", inline: <<-SHELL
+    snap install go --classic
+  SHELL
+
+  ## Install ebpf related
   config.vm.provision "shell", inline: <<-SHELL
     apt-get -yqq update && apt-get install -yqq bpftrace
   SHELL
