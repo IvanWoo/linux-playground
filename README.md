@@ -23,6 +23,13 @@ vagrant up
 vagrant ssh
 ```
 
+or append the ssh info into `~/.ssh/config`
+
+```sh
+vagrant ssh-config >> ~/.ssh/config
+ssh default
+```
+
 halt the machine
 
 ```sh
@@ -38,3 +45,4 @@ vagrant destroy
 ## ref
 
 - [Vagrant and VMWare Fusion 13 Player on Apple M1 Pro](https://gist.github.com/sbailliez/2305d831ebcf56094fd432a8717bed93)
+- [SSH to Vagrant from VScode](https://medium.com/@lizrice/ssh-to-vagrant-from-vscode-5b2c5996bc0e)
