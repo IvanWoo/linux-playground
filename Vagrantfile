@@ -17,6 +17,11 @@ Vagrant.configure("2") do |config|
     apt-get -yqq update && apt-get install -yqq kitty-terminfo
   SHELL
 
+  ## Install bash utils
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get -yqq update && apt-get install -yqq binutils pv
+  SHELL 
+
   ## Install golang
   config.vm.provision "shell", inline: <<-SHELL
     snap install go --classic
