@@ -114,3 +114,63 @@ long living process
 
 The classic “unix” way of spawning daemons is performed by a double-fork technique
 but nowadays developers rely on the `systemd` features
+
+## [Terminals and pseudoterminals](https://biriukov.dev/docs/fd-pipe-session-terminal/4-terminals-and-pseudoterminals/)
+
+### pseudoterminals(`dev/pts`)
+
+### terminal settings
+
+```sh
+stty -a
+```
+
+### terminal signals
+
+### `screen` and `tmux`
+
+```sh
+tmux attach
+tmux detach
+```
+
+```sh
+pstree -p
+```
+
+### pseudoterminal proxy
+
+`expect`
+
+uses a pseudoterminal to allow an interactive terminal-oriented program to be driven from a script file.
+
+```sh
+#!/usr/bin/expect
+
+set timeout 20
+
+set host [lindex $argv 0]
+set username [lindex $argv 1]
+set password [lindex $argv 2]
+
+spawn ssh "$username\@$host"
+
+expect "password:"
+send "$password\r";
+
+interact
+```
+
+`script`
+
+```sh
+script --timing=time.txt script.log
+```
+
+```sh
+scriptreplay --timing=time.txt script.log
+```
+
+[`reptyr`](https://github.com/nelhage/reptyr)
+
+FIXME: cannot install reptyr on the current vagrant box
