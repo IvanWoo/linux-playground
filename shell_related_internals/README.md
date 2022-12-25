@@ -173,4 +173,19 @@ scriptreplay --timing=time.txt script.log
 
 [`reptyr`](https://github.com/nelhage/reptyr)
 
-FIXME: cannot install reptyr on the current vagrant box
+on one terminal
+
+```sh
+# any long running process forget to run inside a tmux
+htop
+```
+
+on the other terminal
+
+```sh
+tmux
+ps -a
+reptyr <htop pid>
+```
+
+Detach your terminal multiplexer `CTRL-B D`

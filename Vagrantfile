@@ -12,6 +12,11 @@ Vagrant.configure("2") do |config|
       v.vmx["ethernet0.virtualdev"] = "vmxnet3"
   end
 
+  ## Basic setup
+  config.vm.provision "shell", inline: <<-SHELL
+    echo "sudo su -" >> .bashrc
+  SHELL
+
   ## Install terminfo
   config.vm.provision "shell", inline: <<-SHELL
     apt-get -yqq update && apt-get install -yqq kitty-terminfo
@@ -32,5 +37,15 @@ Vagrant.configure("2") do |config|
   ## Install ebpf related
   config.vm.provision "shell", inline: <<-SHELL
     apt-get -yqq update && apt-get install -yqq bpftrace
+  SHELL
+
+  ## Install reptyr
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get -yqq update && apt-get install -yqq linux-headers-$(uname -r) bison build-essential cmake flex g++ git libelf-dev zlib1g-dev libfl-dev systemtap-sdt-dev binutils-dev llvm-8-dev llvm-8-runtime libclang-8-dev clang-8 arping netperf iperf3 python3-distutils
+    git clone --depth=1 https://github.com/nelhage/reptyr.git
+    cd reptyr
+    make
+    mv reptyr /usr/local/bin/reptyr 
+    echo 0 > /proc/sys/kernel/yama/ptrace_scope
   SHELL
 end
