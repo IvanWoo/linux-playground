@@ -47,3 +47,70 @@ $ echo $?
 
 ### PIPE Nonblocking I/O
 
+## [process groups, jobs and sessions](https://biriukov.dev/docs/fd-pipe-session-terminal/3-process-groups-jobs-and-sessions/)
+
+### process groups
+
+process group is job
+
+a process group lives as long as it has at least one member
+
+how to leave a process group:
+
+- join another group
+- creating its own new group
+- terminate
+
+sends a SIGTERM(15) to all members of the process group 123(the dash in front of 123 matters)
+
+```sh
+kill -15 -123
+```
+
+### sessions
+
+a session is a collection of process groups
+
+get the stats of current running process
+
+```sh
+cat /proc/$$/stat | cut -d " " -f 1,4,5,6,7,8 | tr ' ' '\n' | paste <(echo -ne "pid\nppid\npgid\nsid\ntty\ntgid\n") -
+```
+
+### shell job control
+
+move this job to the background by pressing `Ctrl+Z`
+
+check job status: `jobs -l`
+
+resume background job: `bg %1`
+
+move job to foreground: `fg %1`
+
+start a job in background by adding an ampersand (`&`) char in the end of the pipeline: `sleep 999 | grep 123 &`
+
+### `kill` command
+
+### `nohup` and `disown`
+
+to protect our long-running program from being suddenly killed by a broken internet connection or low laptop battery
+make the program immune to the `SIGHUP` signal
+
+e.g
+
+```sh
+nohup ./sleep.py &
+```
+
+```sh
+./sleep.py &
+jobs -l
+disown <pid>
+```
+
+### Daemons
+
+long living process
+
+The classic “unix” way of spawning daemons is performed by a double-fork technique
+but nowadays developers rely on the `systemd` features
