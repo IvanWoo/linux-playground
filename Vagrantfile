@@ -20,11 +20,13 @@ Vagrant.configure("2") do |config|
   ## Install bash utils
   config.vm.provision "shell", inline: <<-SHELL
     apt-get -yqq update && apt-get install -yqq binutils pv
-  SHELL 
+  SHELL
 
   ## Install golang
   config.vm.provision "shell", inline: <<-SHELL
-    snap install go --classic
+    curl -sLO https://dl.google.com/go/go1.19.4.linux-arm64.tar.gz
+    tar -C /usr/local -xzf go1.19.4.linux-arm64.tar.gz
+    echo 'export PATH=$PATH:/usr/local/go/bin' > /etc/profile.d/golang.sh
   SHELL
 
   ## Install ebpf related
