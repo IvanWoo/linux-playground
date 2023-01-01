@@ -40,6 +40,12 @@ $ echo $?
 
 ### FIFO or Named pipes
 
+```sh
+mkfifo hello
+```
+
+The FIFO file could be helpful when you need to build a connection between completely unrelated programs or daemons without changing their source code.
+
 ### `pv` tool
 
 - monitor the progress of data through a pipe
