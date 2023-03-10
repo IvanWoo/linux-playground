@@ -51,8 +51,14 @@ objdump -d sum.o > 01.txt
 
 ### no visbility between cpus
 
-## take away
+### take away
 
 - 指令/代码执行原子性假设不再成立
 - 程序的顺序执行假设不再成立
 - 多处理器间内存访问无法即时可见
+
+## peterson algorithm (no lock)
+
+```sh
+gcc peterson.c && ./a.out
+```
