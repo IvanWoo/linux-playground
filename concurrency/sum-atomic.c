@@ -14,11 +14,14 @@ long sum = 0;
 //   );
 // }
 
+void atomic_inc(long *ptr) {
+  // https://stackoverflow.com/a/72577865
+  __atomic_add_fetch(&sum, 1, __ATOMIC_SEQ_CST);
+} 
+
 void Tsum() {
   for (int i = 0; i < N; i++) {
-    // https://stackoverflow.com/a/72577865
-    // atomic_fetch_add(&sum, 1);
-    __atomic_add_fetch(&sum, 1, __ATOMIC_SEQ_CST);
+    atomic_fetch_add(&sum, 1);
   }
 }
 

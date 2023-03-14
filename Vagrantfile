@@ -26,6 +26,11 @@ Vagrant.configure("2") do |config|
     apt-get -yqq update && apt-get install -yqq binutils pv
   SHELL
 
+  ## Install gcc utils
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get -yqq update && apt-get install -yqq gdb
+  SHELL
+
   ## Install golang
   config.vm.provision "shell", inline: <<-SHELL
     curl -sLO https://dl.google.com/go/go1.19.4.linux-arm64.tar.gz
