@@ -10,6 +10,9 @@
         "*.liquid": "html",
         "stdlib.h": "c",
         "waitstatus.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "thread-sync.h": "c",
+        "thread.h": "c",
+        "stdio.h": "c"
     }
 }
