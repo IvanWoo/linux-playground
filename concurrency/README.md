@@ -216,3 +216,72 @@ void Tworker() {
 ```
 
 用 wait + broadcast 实现 `WAIT_UNTIL`，从而实现线程之间的同步
+
+### 信号量(semaphore)：一种条件变量的特例
+
+```c
+void P(sem_t *sem) { // wait
+  wait_until(sem->count > 0) {
+    sem->count--;
+  }
+}
+
+void V(sem_t *sem) { // post (signal)
+  sem->count++;
+}
+```
+
+正是因为条件的特殊性，信号量不需要 broadcast
+
+- P 失败时立即睡眠等待
+- 执行 V 时，唤醒任意等待的线程
+
+```sh
+gcc pc-sem.c && ./a.out
+```
+
+#### 两种典型应用
+
+- 实现一次临时的 happens-before
+- 实现计数型的同步
+
+对应了两种线程 join 的方法
+
+```sh
+gcc join-sem.c && ./a.out
+```
+
+```sh
+gcc fish-sem.c && ./a.out
+```
+
+#### 哲 ♂ 学家吃饭问题
+
+```sh
+gcc philosopher.c && ./a.out
+```
+
+反思：分布与集中
+
+“Leader/follower” - 有一个集中的 “总控”，而非 “各自协调”
+
+- 在可靠的消息机制上实现任务分派
+- Leader 串行处理所有请求 (例如：条件变量服务)
+
+```c
+void Tphilosopher(int id) {
+  send(Twaiter, id, EAT);
+  receive(Twatier); // 等待 waiter 把两把叉子递给哲学家
+  eat();
+  send(Twaiter, id, DONE); // 归还叉子
+}
+
+void Twaiter() {
+  while (1) {
+    (id, status) = receive(Any);
+    switch (status) { ... }
+  }
+}
+```
+
+the Google file system
