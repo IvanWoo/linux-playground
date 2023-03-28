@@ -8,7 +8,7 @@ gcc stack-prob.c && ./a.out
 
 around `8192 KB` == `8 MB`
 
-## challenges of multi-core execuation
+## challenges of multi-core execution
 
 ### no atomicity
 
@@ -49,7 +49,7 @@ gcc sum.c -O1 -c
 objdump -d sum.o > 01.txt
 ```
 
-### no visbility between cpus
+### no visibility between cpus
 
 ### take away
 
@@ -285,3 +285,26 @@ void Twaiter() {
 ```
 
 the Google file system
+
+## 协程(coroutine)：操作系统 “不感知” 的上下文切换
+
+和线程概念相同 (独立堆栈、共享内存)
+
+- 但 “一直执行”，直到 yield() 主动放弃处理器
+  - 有编译器辅助，切换开销低
+    - yield() 是函数调用，只需保存/恢复 “callee saved” 寄存器
+    - 线程切换需要保存/恢复全部寄存器
+- 但等待 I/O 时，其他协程就不能运行了……
+  - 失去了并行
+
+### Go 和 Goroutine
+
+Goroutine: 概念上是线程，实际是线程和协程的混合体
+
+```sh
+go run fib.go
+```
+
+```sh
+go run pc.go
+```
