@@ -308,3 +308,67 @@ go run fib.go
 ```sh
 go run pc.go
 ```
+
+## 真实世界的并发 Bug
+
+### 死锁 (Deadlock)
+
+#### AA-Deadlock
+
+```c
+lock(&lk);
+// lk = LOCKED;
+lock(&lk);
+// while (xchg(&lk, LOCKED) == LOCKED) ;
+```
+
+#### ABBA-Deadlock
+
+```c
+void Tphilosopher() {
+  P(&avail[lhs]);
+  P(&avail[rhs]);
+  // ...
+  V(&avail[lhs]);
+  V(&avail[rhs]);
+}
+```
+
+#### 死锁产生的必要条件
+
+- Mutual-exclusion - 一张校园卡只能被一个人拥有
+- Wait-for - 一个人等其他校园卡时，不会释放已有的校园卡
+- No-preemption - 不能抢夺他人的校园卡
+- Circular-chain - 形成校园卡的循环等待关系
+
+打破任何一个即可避免死锁
+
+### 数据竞争（Data Race）
+
+**不同的线程**同时访问**同一内存**，且**至少有一个是写**。
+
+用锁保护好共享数据，消灭一切数据竞争
+
+```c
+// Case #1: 上错了锁
+void thread1() { spin_lock(&lk1); sum++; spin_unlock(&lk1); }
+void thread2() { spin_lock(&lk2); sum++; spin_unlock(&lk2); }
+```
+
+```c
+// Case #2: 忘记上锁
+void thread1() { spin_lock(&lk1); sum++; spin_unlock(&lk1); }
+void thread2() { sum++; }
+```
+
+### violations
+
+#### 原子性违反 (AV)
+
+ABA
+
+TOCTTOU - time of check to time of use
+
+#### 顺序违反 (OV)
+
+BA
