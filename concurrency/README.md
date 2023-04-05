@@ -372,3 +372,129 @@ TOCTTOU - time of check to time of use
 #### 顺序违反 (OV)
 
 BA
+
+## 并发 Bug 的应对
+
+### defensive programming
+
+### 运行时检查
+
+lockdep
+
+### Sanitizers
+
+```sh
+$ gcc -ggdb -fsanitize=thread alipay.c && ./a.out
+==================
+WARNING: ThreadSanitizer: data race (pid=2603)
+  Read of size 8 at 0xaaaaaaab2010 by thread T2:
+    #0 Alipay_withdraw /vagrant/concurrency/alipay.c:6 (a.out+0xec0)
+    #1 Talipay /vagrant/concurrency/alipay.c:13 (a.out+0xf50)
+    #2 wrapper /vagrant/concurrency/thread.h:21 (a.out+0xbe4)
+
+  Previous write of size 8 at 0xaaaaaaab2010 by thread T1:
+    #0 Alipay_withdraw /vagrant/concurrency/alipay.c:8 (a.out+0xf08)
+    #1 Talipay /vagrant/concurrency/alipay.c:13 (a.out+0xf50)
+    #2 wrapper /vagrant/concurrency/thread.h:21 (a.out+0xbe4)
+
+  Location is global 'balance' of size 8 at 0xaaaaaaab2010 (a.out+0x000000012010)
+
+  Thread T2 (tid=2606, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x63bb0)
+    #1 create /vagrant/concurrency/thread.h:32 (a.out+0xd50)
+    #2 main /vagrant/concurrency/alipay.c:18 (a.out+0xf98)
+
+  Thread T1 (tid=2605, finished) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x63bb0)
+    #1 create /vagrant/concurrency/thread.h:32 (a.out+0xd50)
+    #2 main /vagrant/concurrency/alipay.c:17 (a.out+0xf8c)
+
+SUMMARY: ThreadSanitizer: data race /vagrant/concurrency/alipay.c:6 in Alipay_withdraw
+==================
+balance = 0
+ThreadSanitizer: reported 1 warnings
+```
+
+```sh
+$ gcc -ggdb -fsanitize=address uaf.c && ./a.out
+=================================================================
+==2977==ERROR: AddressSanitizer: heap-use-after-free on address 0xffff97f007b0 at pc 0xaaaadb0a09dc bp 0xfffff17af420 sp 0xfffff17af430
+WRITE of size 4 at 0xffff97f007b0 thread T0
+    #0 0xaaaadb0a09d8 in main /vagrant/concurrency/uaf.c:8
+    #1 0xffff9bfe73f8 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #2 0xffff9bfe74c8 in __libc_start_main_impl ../csu/libc-start.c:392
+    #3 0xaaaadb0a082c in _start (/vagrant/concurrency/a.out+0x82c)
+
+0xffff97f007b0 is located 0 bytes inside of 4-byte region [0xffff97f007b0,0xffff97f007b4)
+freed by thread T0 here:
+    #0 0xffff9c219fe8 in __interceptor_free ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:127
+    #1 0xaaaadb0a0988 in main /vagrant/concurrency/uaf.c:7
+    #2 0xffff9bfe73f8 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #3 0xffff9bfe74c8 in __libc_start_main_impl ../csu/libc-start.c:392
+    #4 0xaaaadb0a082c in _start (/vagrant/concurrency/a.out+0x82c)
+
+previously allocated by thread T0 here:
+    #0 0xffff9c21a2f4 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:145
+    #1 0xaaaadb0a0920 in main /vagrant/concurrency/uaf.c:5
+    #2 0xffff9bfe73f8 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #3 0xffff9bfe74c8 in __libc_start_main_impl ../csu/libc-start.c:392
+    #4 0xaaaadb0a082c in _start (/vagrant/concurrency/a.out+0x82c)
+
+SUMMARY: AddressSanitizer: heap-use-after-free /vagrant/concurrency/uaf.c:8 in main
+Shadow bytes around the buggy address:
+  0x200ff2fe00a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff2fe00b0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff2fe00c0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff2fe00d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff2fe00e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x200ff2fe00f0: fa fa fa fa fa fa[fd]fa fa fa fa fa fa fa fa fa
+  0x200ff2fe0100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff2fe0110: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff2fe0120: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff2fe0130: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x200ff2fe0140: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==2977==ABORTING
+```
+
+### stack guard
+
+#### 烫烫烫、屯屯屯和葺葺葺
+
+- 未初始化栈：`0xcdcccccc`
+- 未初始化堆：`0xcdcdcdcd`
+- 对象头尾：`0xfdfdfdfd`
+- 已回收内存：`0xdddddddd`
+  - 手持两把锟斤拷，口中疾呼烫烫烫
+  - 脚踏千朵屯屯屯，笑看万物锘锘锘
+  - （它们一直在无形中保护你）
+
+```sh
+$ python3 -c "print((b'\xcc' * 80).decode('gb2312'))"
+烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫
+
+$ python3 -c "print((b'\xcd' * 80).decode('gb2312'))"
+屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯屯
+
+$ python3 -c "print((b'\xdd' * 80).decode('gb2312'))"
+葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺葺
+```
