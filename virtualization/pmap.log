@@ -1,0 +1,212 @@
+69743 execve("/usr/bin/pmap", ["pmap", "68815"], 0xffffec61acd0 /* 17 vars */) = 0
+69743 brk(NULL)                         = 0xaaaae8309000
+69743 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff965f8000
+69743 faccessat(AT_FDCWD, "/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=23679, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 23679, PROT_READ, MAP_PRIVATE, 3, 0) = 0xffff965f2000
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/lib/aarch64-linux-gnu/libprocps.so.8", O_RDONLY|O_CLOEXEC) = 3
+69743 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=75760, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 347992, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff9656e000
+69743 mmap(0xffff96570000, 282456, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0) = 0xffff96570000
+69743 munmap(0xffff9656e000, 8192)      = 0
+69743 munmap(0xffff965b5000, 57176)     = 0
+69743 mprotect(0xffff96580000, 65536, PROT_NONE) = 0
+69743 mmap(0xffff96590000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x10000) = 0xffff96590000
+69743 mmap(0xffff96593000, 139096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xffff96593000
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/lib/aarch64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+69743 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\340u\2\0\0\0\0\0"..., 832) = 832
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=1641496, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 1810024, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff963b6000
+69743 mmap(0xffff963c0000, 1744488, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0) = 0xffff963c0000
+69743 munmap(0xffff963b6000, 40960)     = 0
+69743 munmap(0xffff9656a000, 24168)     = 0
+69743 mprotect(0xffff96549000, 61440, PROT_NONE) = 0
+69743 mmap(0xffff96558000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x188000) = 0xffff96558000
+69743 mmap(0xffff9655e000, 48744, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xffff9655e000
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/lib/aarch64-linux-gnu/libsystemd.so.0", O_RDONLY|O_CLOEXEC) = 3
+69743 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=804720, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 936280, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff962db000
+69743 mmap(0xffff962e0000, 870744, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0) = 0xffff962e0000
+69743 munmap(0xffff962db000, 20480)     = 0
+69743 munmap(0xffff963b5000, 43352)     = 0
+69743 mprotect(0xffff9639d000, 61440, PROT_NONE) = 0
+69743 mmap(0xffff963ac000, 32768, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xbc000) = 0xffff963ac000
+69743 mmap(0xffff963b4000, 2392, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xffff963b4000
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/lib/aarch64-linux-gnu/liblzma.so.5", O_RDONLY|O_CLOEXEC) = 3
+69743 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=157936, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 286976, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff96299000
+69743 mmap(0xffff962a0000, 221440, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0) = 0xffff962a0000
+69743 munmap(0xffff96299000, 28672)     = 0
+69743 munmap(0xffff962d7000, 33024)     = 0
+69743 mprotect(0xffff962c5000, 65536, PROT_NONE) = 0
+69743 mmap(0xffff962d5000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x25000) = 0xffff962d5000
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/lib/aarch64-linux-gnu/libzstd.so.1", O_RDONLY|O_CLOEXEC) = 3
+69743 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=730992, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 860224, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff961cd000
+69743 mmap(0xffff961d0000, 794688, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0) = 0xffff961d0000
+69743 munmap(0xffff961cd000, 12288)     = 0
+69743 munmap(0xffff96293000, 49216)     = 0
+69743 mprotect(0xffff96282000, 61440, PROT_NONE) = 0
+69743 mmap(0xffff96291000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xb1000) = 0xffff96291000
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/lib/aarch64-linux-gnu/liblz4.so.1", O_RDONLY|O_CLOEXEC) = 3
+69743 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=112632, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff965f0000
+69743 mmap(NULL, 241752, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff96194000
+69743 mmap(0xffff961a0000, 176216, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0) = 0xffff961a0000
+69743 munmap(0xffff96194000, 49152)     = 0
+69743 munmap(0xffff961cc000, 12376)     = 0
+69743 mprotect(0xffff961bb000, 61440, PROT_NONE) = 0
+69743 mmap(0xffff961ca000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1a000) = 0xffff961ca000
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/lib/aarch64-linux-gnu/libcap.so.2", O_RDONLY|O_CLOEXEC) = 3
+69743 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=34712, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 163904, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff96177000
+69743 mmap(0xffff96180000, 98368, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0) = 0xffff96180000
+69743 munmap(0xffff96177000, 36864)     = 0
+69743 munmap(0xffff96199000, 24640)     = 0
+69743 mprotect(0xffff96187000, 65536, PROT_NONE) = 0
+69743 mmap(0xffff96197000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x7000) = 0xffff96197000
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/lib/aarch64-linux-gnu/libgcrypt.so.20", O_RDONLY|O_CLOEXEC) = 3
+69743 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=893312, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 1023704, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff96086000
+69743 mmap(0xffff96090000, 958168, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0) = 0xffff96090000
+69743 munmap(0xffff96086000, 40960)     = 0
+69743 munmap(0xffff9617a000, 24280)     = 0
+69743 mprotect(0xffff96162000, 61440, PROT_NONE) = 0
+69743 mmap(0xffff96171000, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xd1000) = 0xffff96171000
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/lib/aarch64-linux-gnu/libgpg-error.so.0", O_RDONLY|O_CLOEXEC) = 3
+69743 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0\267\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=141304, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 270672, PROT_NONE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff9604d000
+69743 mmap(0xffff96050000, 205136, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0) = 0xffff96050000
+69743 munmap(0xffff9604d000, 12288)     = 0
+69743 munmap(0xffff96083000, 49488)     = 0
+69743 mprotect(0xffff96072000, 61440, PROT_NONE) = 0
+69743 mmap(0xffff96081000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x21000) = 0xffff96081000
+69743 close(3)                          = 0
+69743 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff965ee000
+69743 set_tid_address(0xffff965eecb0)   = 69743
+69743 set_robust_list(0xffff965eecc0, 24) = 0
+69743 rseq(0xffff965ef380, 0x20, 0, 0xd428bc00) = 0
+69743 mprotect(0xffff96558000, 16384, PROT_READ) = 0
+69743 mprotect(0xffff96081000, 4096, PROT_READ) = 0
+69743 mprotect(0xffff96171000, 12288, PROT_READ) = 0
+69743 mprotect(0xffff96197000, 4096, PROT_READ) = 0
+69743 mprotect(0xffff961ca000, 4096, PROT_READ) = 0
+69743 mprotect(0xffff96291000, 4096, PROT_READ) = 0
+69743 mprotect(0xffff962d5000, 4096, PROT_READ) = 0
+69743 mprotect(0xffff963ac000, 28672, PROT_READ) = 0
+69743 mprotect(0xffff96590000, 8192, PROT_READ) = 0
+69743 mprotect(0xaaaaad706000, 4096, PROT_READ) = 0
+69743 mprotect(0xffff965fd000, 8192, PROT_READ) = 0
+69743 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+69743 munmap(0xffff965f2000, 23679)     = 0
+69743 getrandom("\x71\x7e\x4e\xa9\xef\x27\x8f\xdf", 8, GRND_NONBLOCK) = 8
+69743 brk(NULL)                         = 0xaaaae8309000
+69743 brk(0xaaaae832a000)               = 0xaaaae832a000
+69743 prctl(PR_CAPBSET_READ, CAP_MAC_OVERRIDE) = 1
+69743 prctl(PR_CAPBSET_READ, 0x30 /* CAP_??? */) = -1 EINVAL (Invalid argument)
+69743 prctl(PR_CAPBSET_READ, CAP_CHECKPOINT_RESTORE) = 1
+69743 prctl(PR_CAPBSET_READ, 0x2c /* CAP_??? */) = -1 EINVAL (Invalid argument)
+69743 prctl(PR_CAPBSET_READ, 0x2a /* CAP_??? */) = -1 EINVAL (Invalid argument)
+69743 prctl(PR_CAPBSET_READ, 0x29 /* CAP_??? */) = -1 EINVAL (Invalid argument)
+69743 openat(AT_FDCWD, "/proc/self/auxv", O_RDONLY) = 3
+69743 newfstatat(3, "", {st_mode=S_IFREG|0400, st_size=0, ...}, AT_EMPTY_PATH) = 0
+69743 read(3, "!\0\0\0\0\0\0\0\0\300_\226\377\377\0\0003\0\0\0\0\0\0\0p\22\0\0\0\0\0\0"..., 1024) = 336
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/proc/sys/kernel/osrelease", O_RDONLY) = 3
+69743 newfstatat(3, "", {st_mode=S_IFREG|0444, st_size=0, ...}, AT_EMPTY_PATH) = 0
+69743 read(3, "5.15.0-69-generic\n", 1024) = 18
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/sys/devices/system/cpu/online", O_RDONLY|O_CLOEXEC) = 3
+69743 read(3, "0-1\n", 1024)            = 4
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/proc/self/auxv", O_RDONLY) = 3
+69743 newfstatat(3, "", {st_mode=S_IFREG|0400, st_size=0, ...}, AT_EMPTY_PATH) = 0
+69743 read(3, "!\0\0\0\0\0\0\0\0\300_\226\377\377\0\0003\0\0\0\0\0\0\0p\22\0\0\0\0\0\0"..., 1024) = 336
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 3
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=3048928, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 3048928, PROT_READ, MAP_PRIVATE, 3, 0) = 0xffff95d67000
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/usr/share/locale/locale.alias", O_RDONLY|O_CLOEXEC) = 3
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=2996, ...}, AT_EMPTY_PATH) = 0
+69743 read(3, "# Locale name alias data base.\n#"..., 4096) = 2996
+69743 read(3, "", 4096)                 = 0
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/usr/share/locale/en_US.UTF-8/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/usr/share/locale/en_US.utf8/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/usr/share/locale/en_US/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/usr/share/locale/en.UTF-8/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/usr/share/locale/en.utf8/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/usr/share/locale/en/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/usr/share/locale-langpack/en_US.UTF-8/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/usr/share/locale-langpack/en_US.utf8/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/usr/share/locale-langpack/en_US/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/usr/share/locale-langpack/en.UTF-8/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/usr/share/locale-langpack/en.utf8/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/usr/share/locale-langpack/en/LC_MESSAGES/procps-ng.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+69743 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 3
+69743 dup3(3, 0, 0)                     = 0
+69743 close(3)                          = 0
+69743 shmget(IPC_PRIVATE, 42, IPC_CREAT|0666) = 12
+69743 shmat(12, NULL, SHM_RDONLY)       = 0xffff965f7000
+69743 newfstatat(0, "", {st_mode=S_IFREG|0444, st_size=0, ...}, AT_EMPTY_PATH) = 0
+69743 read(0, "aaaaad6f0000-aaaaad6f6000 r-xp 0"..., 1024) = 1024
+69743 read(0, "64-linux-gnu/libgcrypt.so.20.3.4"..., 1024) = 1024
+69743 read(0, "                  /usr/lib/aarch"..., 1024) = 1024
+69743 read(0, "p 00025000 fd:00 653123         "..., 1024) = 1024
+69743 read(0, "       /usr/lib/aarch64-linux-gn"..., 1024) = 1024
+69743 shmdt(0xffff965f7000)             = 0
+69743 shmctl(12, IPC_RMID, NULL)        = 0
+69743 newfstatat(AT_FDCWD, "/proc/self/task", {st_mode=S_IFDIR|0555, st_size=0, ...}, 0) = 0
+69743 mmap(NULL, 135168, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff95d46000
+69743 mmap(NULL, 135168, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xffff95d25000
+69743 newfstatat(AT_FDCWD, "/proc/68815", {st_mode=S_IFDIR|0555, st_size=0, ...}, 0) = 0
+69743 openat(AT_FDCWD, "/proc/68815/stat", O_RDONLY) = 3
+69743 read(3, "68815 (a.out) t 68811 68815 5941"..., 1024) = 326
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/proc/68815/cmdline", O_RDONLY) = 3
+69743 read(3, "/vagrant/virtualization/a.out\0", 2047) = 30
+69743 close(3)                          = 0
+69743 openat(AT_FDCWD, "/usr/lib/aarch64-linux-gnu/gconv/gconv-modules.cache", O_RDONLY) = 3
+69743 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=27004, ...}, AT_EMPTY_PATH) = 0
+69743 mmap(NULL, 27004, PROT_READ, MAP_SHARED, 3, 0) = 0xffff965bc000
+69743 close(3)                          = 0
+69743 futex(0xffff9655d89c, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+69743 newfstatat(1, "", {st_mode=S_IFCHR|0600, st_rdev=makedev(0x88, 0xf), ...}, AT_EMPTY_PATH) = 0
+69743 write(1, "68815:   /vagrant/virtualization"..., 39) = 39
+69743 openat(AT_FDCWD, "/proc/68815/maps", O_RDONLY) = 3
+69743 newfstatat(3, "", {st_mode=S_IFREG|0444, st_size=0, ...}, AT_EMPTY_PATH) = 0
+69743 read(3, "aaaaaaaa0000-aaaaaaaa1000 r-xp 0"..., 1024) = 691
+69743 write(1, "0000aaaaaaaa0000      4K r-x-- a"..., 37) = 37
+69743 write(1, "0000aaaaaaab0000      8K rw--- a"..., 37) = 37
+69743 write(1, "0000fffff7fc2000    172K r-x-- l"..., 53) = 53
+69743 write(1, "0000fffff7ff9000      8K r----  "..., 42) = 42
+69743 write(1, "0000fffff7ffb000      4K r-x--  "..., 42) = 42
+69743 write(1, "0000fffff7ffc000     16K rw--- l"..., 53) = 53
+69743 write(1, "0000fffffffdf000    132K rw---  "..., 43) = 43
+69743 read(3, "", 1024)                 = 0
+69743 close(3)                          = 0
+69743 write(1, " total              344K\n", 25) = 25
+69743 close(1)                          = 0
+69743 close(2)                          = 0
+69743 lseek(0, -28, SEEK_CUR)           = 5092
+69743 exit_group(0)                     = ?
+69743 +++ exited with 0 +++
