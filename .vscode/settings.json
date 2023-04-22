@@ -14,5 +14,6 @@
         "thread-sync.h": "c",
         "thread.h": "c",
         "stdio.h": "c"
-    }
+    },
+    "python.analysis.typeCheckingMode": "basic"
 }

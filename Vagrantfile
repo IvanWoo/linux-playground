@@ -5,6 +5,8 @@ Vagrant.configure("2") do |config|
   config.vm.box = "hajowieland/ubuntu-jammy-arm"
   config.vm.box_version = "1.0.0"
   config.vm.provider "vmware_desktop" do |v|
+      v.memory = 4096
+      v.cpus = 2 
       v.ssh_info_public = true
       v.gui = true 
       v.linked_clone = false

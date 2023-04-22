@@ -11,11 +11,12 @@
 
 ## address spaces
 
-查看进程的地址空间
+### 查看进程的地址空间
 
 start target program via gdb
 
 ```sh
+cd pmap
 make
 make gdb
 ```
@@ -62,4 +63,16 @@ grep "/proc/" pmap.log
 69743 openat(AT_FDCWD, "/proc/68815/stat", O_RDONLY) = 3
 69743 openat(AT_FDCWD, "/proc/68815/cmdline", O_RDONLY) = 3
 69743 openat(AT_FDCWD, "/proc/68815/maps", O_RDONLY) = 3
+```
+
+### 进程地址空间管理
+
+```c
+// 映射
+void *mmap(void *addr, size_t length, int prot, int flags,
+           int fd, off_t offset);
+int munmap(void *addr, size_t length);
+
+// 修改映射权限
+int mprotect(void *addr, size_t length, int prot);
 ```
