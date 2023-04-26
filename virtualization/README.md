@@ -22,6 +22,21 @@ make gdb
 ```
 
 ```sh
+(gdb) info proc mappings
+process 2290
+Mapped address spaces:
+
+          Start Addr           End Addr       Size     Offset  Perms  objfile
+      0xaaaaaaaa0000     0xaaaaaaaa1000     0x1000        0x0  r-xp   /vagrant/virtualization/pmap/a.out
+      0xaaaaaaab0000     0xaaaaaaab2000     0x2000        0x0  rw-p   /vagrant/virtualization/pmap/a.out
+      0xfffff7fc2000     0xfffff7fed000    0x2b000        0x0  r-xp   /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+      0xfffff7ff9000     0xfffff7ffb000     0x2000        0x0  r--p   [vvar]
+      0xfffff7ffb000     0xfffff7ffc000     0x1000        0x0  r-xp   [vdso]
+      0xfffff7ffc000     0xfffff8000000     0x4000    0x2a000  rw-p   /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+      0xfffffffdf000    0x1000000000000    0x21000        0x0  rw-p   [stack]
+```
+
+```sh
 (gdb) info proc
 process 68815
 cmdline = '/vagrant/virtualization/a.out'
