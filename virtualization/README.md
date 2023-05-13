@@ -91,3 +91,89 @@ int munmap(void *addr, size_t length);
 // 修改映射权限
 int mprotect(void *addr, size_t length, int prot);
 ```
+
+## ELF (Executable and Linkable Format)
+
+```sh
+cd elf
+gcc ansi.c
+```
+
+```sh
+ldd a.out
+
+        linux-vdso.so.1 (0x0000ffff964bc000)
+        libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffff962c0000)
+        /lib/ld-linux-aarch64.so.1 (0x0000ffff96483000)
+```
+
+### PLT (Procedure Linkage Table)
+
+```sh
+objdump -d a.out | grep plt
+
+Disassembly of section .plt:
+0000000000000610 <.plt>:
+0000000000000630 <__libc_start_main@plt>:
+0000000000000640 <__cxa_finalize@plt>:
+0000000000000650 <__gmon_start__@plt>:
+0000000000000660 <abort@plt>:
+0000000000000670 <printf@plt>:
+0000000000000680 <putchar@plt>:
+ 6ec:   97ffffd1        bl      630 <__libc_start_main@plt>
+ 6f0:   97ffffdc        bl      660 <abort@plt>
+ 700:   17ffffd4        b       650 <__gmon_start__@plt>
+ 7ac:   97ffffa5        bl      640 <__cxa_finalize@plt>
+ 82c:   97ffff91        bl      670 <printf@plt>
+ 854:   97ffff8b        bl      680 <putchar@plt>
+```
+
+```sh
+readelf -l a.out
+
+Elf file type is DYN (Position-Independent Executable file)
+Entry point 0x6c0
+There are 9 program headers, starting at offset 64
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  PHDR           0x0000000000000040 0x0000000000000040 0x0000000000000040
+                 0x00000000000001f8 0x00000000000001f8  R      0x8
+  INTERP         0x0000000000000238 0x0000000000000238 0x0000000000000238
+                 0x000000000000001b 0x000000000000001b  R      0x1
+      [Requesting program interpreter: /lib/ld-linux-aarch64.so.1]
+  LOAD           0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x0000000000000994 0x0000000000000994  R E    0x10000
+  LOAD           0x0000000000000d88 0x0000000000010d88 0x0000000000010d88
+                 0x0000000000000288 0x0000000000000290  RW     0x10000
+  DYNAMIC        0x0000000000000d98 0x0000000000010d98 0x0000000000010d98
+                 0x00000000000001f0 0x00000000000001f0  RW     0x8
+  NOTE           0x0000000000000254 0x0000000000000254 0x0000000000000254
+                 0x0000000000000044 0x0000000000000044  R      0x4
+  GNU_EH_FRAME   0x00000000000008a8 0x00000000000008a8 0x00000000000008a8
+                 0x000000000000003c 0x000000000000003c  R      0x4
+  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x0000000000000000 0x0000000000000000  RW     0x10
+  GNU_RELRO      0x0000000000000d88 0x0000000000010d88 0x0000000000010d88
+                 0x0000000000000278 0x0000000000000278  R      0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   00
+   01     .interp
+   02     .interp .note.gnu.build-id .note.ABI-tag .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .text .fini .rodata .eh_frame_hdr .eh_frame
+   03     .init_array .fini_array .dynamic .got .data .bss
+   04     .dynamic
+   05     .note.gnu.build-id .note.ABI-tag
+   06     .eh_frame_hdr
+   07
+   08     .init_array .fini_array .dynamic .got
+```
+
+### LD_PRELOAD
+
+```sh
+cd virtualization/elf && make hook.so
+LD_PRELOAD=./hook.so python3 -c "print(2*1e10)" 2>&1 | grep malloc | less
+```
