@@ -177,3 +177,13 @@ Program Headers:
 cd virtualization/elf && make hook.so
 LD_PRELOAD=./hook.so python3 -c "print(2*1e10)" 2>&1 | grep malloc | less
 ```
+
+## implementation of process
+
+厉害的操作系统，同一份代码仅有一个副本
+
+```sh
+cd virtualization && gcc vm.c
+```
+
+run multiple programs and verify that `main` and `printf` have the identical physical address among all programs
