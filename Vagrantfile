@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "hajowieland/ubuntu-jammy-arm"
-  config.vm.box_version = "1.0.0"
+  config.vm.box_version = "1.0.4"
   config.vm.provider "vmware_desktop" do |v|
       v.memory = 4096
       v.cpus = 2 
