@@ -35,4 +35,4 @@
 
 ## ref
 
-- [应用视角的操作系统](https://jyywiki.cn/OS/2023/build/lect2.ipynb)
+- [应用视角的操作系统](https://jyywiki.cn/OS/2023/build/lect2.ipynb.html)

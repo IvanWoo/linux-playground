@@ -26,4 +26,4 @@ programs are state machines, OS is the state machine manager.
 
 ## ref
 
-- [Python 建模操作系统](https://jyywiki.cn/OS/2023/build/lect4.ipynb)
+- [Python 建模操作系统](https://jyywiki.cn/OS/2023/build/lect4.ipynb.html)
