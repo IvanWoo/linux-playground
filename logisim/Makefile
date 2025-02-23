@@ -1,8 +1,10 @@
-a.out: logisim.c
-	gcc $(CFLAGS) logisim.c
+logisim: logisim.c
+	gcc -o logisim -I. logisim.c
 
-run: a.out
-	./a.out | python3 seven-seg.py  # The UNIX Philosophy
+run: logisim
+	./logisim | python3 seg-display.py  # The UNIX Philosophy
 
 clean:
-	rm -f a.out
+	rm -f logisim
+
+.PHONY: run clean
