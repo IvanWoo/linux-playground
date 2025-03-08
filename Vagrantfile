@@ -6,9 +6,9 @@ Vagrant.configure("2") do |config|
   config.vm.box_version = "1.0.4"
   config.vm.provider "vmware_desktop" do |v|
       v.memory = 4096
-      v.cpus = 2 
+      v.cpus = 2
       v.ssh_info_public = true
-      v.gui = true 
+      v.gui = true
       v.linked_clone = false
       v.vmx["ethernet0.virtualdev"] = "vmxnet3"
   end
